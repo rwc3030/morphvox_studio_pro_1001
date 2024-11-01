@@ -25,3 +25,4 @@
         - Added CAPTCHA mechanism.
         - Implemented password strength validation.
         - Provided feedback for users when they exceed the maximum number of login attempts.
+        - Implemented loading state when the login button is clicked.

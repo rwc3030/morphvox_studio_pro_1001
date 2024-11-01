@@ -1,49 +1,63 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [loginAttempts, setLoginAttempts] = useState(0);
-    const MAX_LOGIN_ATTEMPTS = 3;
+    const [attempts, setAttempts] = useState(0);
+    const maxAttempts = 3;
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+    const handleLogin = () => {
+        if (attempts >= maxAttempts) {
             setError('Maximum login attempts exceeded. Please try again later.');
             return;
         }
+
         if (!username || !password) {
             setError('Username and password cannot be empty.');
             return;
         }
-        setLoading(true);
-        try {
-            const response = await axios.post('/api/login', { username, password });
-            // Handle successful login (e.g., redirect or update state)
-        } catch (err) {
-            setLoginAttempts(prev => prev + 1);
-            setError('Invalid credentials. Please try again.');
-        } finally {
-            setLoading(false);
+
+        if (!isPasswordStrong(password)) {
+            setError('Password must be at least 8 characters long and include uppercase letters, numbers, and special characters.');
+            return;
         }
+
+        setLoading(true);
+        // Simulate login process
+        setTimeout(() => {
+            // Assume login fails for demonstration
+            setAttempts(attempts + 1);
+            setError('Incorrect username or password.');
+            setLoading(false);
+        }, 2000);
+    };
+
+    const isPasswordStrong = (password) => {
+        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return strongPasswordRegex.test(password);
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Username:</label>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            {error && <div>{error}</div>}
-            <button type="submit" disabled={loading || !username || !password}>Login</button>
-        </form>
+        <div>
+            <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={handleLogin} disabled={loading || !username || !password}>
+                {loading ? 'Loading...' : 'Login'}
+            </button>
+            {error && <p>{error}</p>}
+        </div>
     );
 };
 
