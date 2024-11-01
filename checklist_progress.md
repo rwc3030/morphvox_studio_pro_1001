@@ -19,7 +19,7 @@
   - **Epic 1:** User Login
     - **Feature 1:** Login Form
       - **Status:** Completed
-      - **Final Notes:** All issues have been resolved, including setting maximum length for username and password fields, adding CAPTCHA mechanism, and implementing password strength validation. The task has been confirmed complete.
+      - **Final Notes:** All issues have been resolved, including setting maximum length for username and password fields, adding CAPTCHA mechanism, and implementing password strength validation. The task has been confirmed complete. User feedback mechanism for exceeding maximum login attempts has been implemented, and the loading state when the login button is clicked has also been added.
       - **Updates:** 
         - Set maximum length for username and password fields.
         - Added CAPTCHA mechanism.
