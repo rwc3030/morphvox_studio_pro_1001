@@ -10,7 +10,9 @@
 - The generated code is functionally consistent with the requirements.
 
 ## Issues to Address
-- All issues have been addressed and cleared.
+- User feedback mechanism for exceeding maximum login attempts is not specified.
+- Details on how to implement the loading state when the login button is clicked are missing.
+- Criteria for password strength validation are not defined.
 
 ## Extracted Task Details
 - **Milestone:** User Authentication
