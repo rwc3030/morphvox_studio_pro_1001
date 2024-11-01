@@ -1,31 +1,23 @@
 # Project Setup
 # Here are the requirements for the project setup.
 ---
-### LAMP Server Requirements
+### VST Plugin Requirements
 1. **Using the following components**:
-   - **Apache**: To serve PHP files.
-   - **PHP**: Version 7.4+ for backend logic.
-   - **MySQL**: For database storage and management.
-   - **PHP MySQL Extension**: Required for MySQL-PHP interactions.
+   - **VST SDK**: Required for building VST plugins.
+   - **CMake**: For managing the build process.
+   - **JUCE**: A framework for developing audio applications and plugins.
 ---
 ### Directory Structure with Specific Filenames
 ```
 /project-root
-├── /public
-│   ├── index.php                  # Main entry file for the app
-│   ├── app.js                     # JavaScript file for AJAX/real-time interactivity
-│   └── styles.css                 # CSS file for basic styling
-├── /src
-│   ├── database.php               # Database connection and helper functions
-│   ├── /api                       # Folder for API endpoint files
-│   │   └── getData.php            # API endpoint for retrieving data
-│   ├── /partials                  # Reusable PHP partials
-│   │   └── header.php             # Common header partial
-│   └── /utils                     # Utility PHP scripts
-│       └── websocket-server.php   # WebSocket server script (optional, if real-time is required)
-├── /config
-│   └── config.php                 # Configuration file for database settings
-└── README.md                      # Documentation for setup and usage
+├── /build                        # Build directory for compiled files
+├── /source                       # Source code for the plugin
+│   ├── PluginProcessor.cpp       # Main processing code for the plugin
+│   ├── PluginEditor.cpp          # GUI code for the plugin
+│   └── /utils                    # Utility functions for the plugin
+├── /resources                    # Resources like images and audio files
+├── /tests                        # Unit tests for the plugin
+└── README.md                     # Documentation for setup and usage
 ```
 ---
 ## Development Best Practices
@@ -33,7 +25,7 @@
 - **Function Arguments:** Limit functions to five arguments maximum; use objects or arrays for additional data.
 - **Function Size:** Keep functions under 20 lines; split complex functions as needed.
 - **Code Comments:** Add comments for complex logic and functions.
-- **Consistency:** Use camelCase for JavaScript, snake_case for PHP, and consistent formatting.
+- **Consistency:** Use camelCase for JavaScript, snake_case for C++, and consistent formatting.
 - **Error Handling:** Include error handling with clear, informative messages.
 - **DRY Principle:** Refactor redundant code into functions.
 - **Modular Design:** Structure code in self-contained modules.
