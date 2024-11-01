@@ -4,31 +4,22 @@
 The design of the MorphVox Studio Pro interface is centered around a sophisticated and streamlined aesthetic. The dark-mode interface features subtle accent illumination that enhances focus on critical parameters and real-time visualizations. The color scheme primarily utilizes deep charcoal and obsidian tones, accented with dynamic highlights in teal, magenta, and amber to effectively highlight active controls and processing indicators. Clean, high-contrast typography using a custom-designed sans-serif font ensures outstanding legibility.
 
 ## Key Functionality
-MorphVox Studio Pro represents a state-of-the-art voice transformation processor that seamlessly combines advanced pitch-shifting, formant manipulation, and harmonic restructuring. The plugin offers extensive technical capabilities, including:
-- Multiple pitch detection algorithms optimized for different vocal ranges.
-- AI-powered formant prediction for natural-sounding transformations.
-- Real-time MIDI control for live performance.
-- Comprehensive voice preset morphing with customizable transition times.
-- Advanced randomization options for subtle voice variation.
-- High-quality internal processing supporting sample rates up to 192kHz with adjustable latency settings.
+MorphVox Studio Pro represents a state-of-the-art voice transformation processor that seamlessly combines advanced pitch-shifting, formant manipulation, and harmonic restructuring within an intuitive interface design, offering an unparalleled solution for voice acting, content creation, and audio production while maintaining a sophisticated and streamlined aesthetic through its carefully crafted dark-mode interface with subtle accent illumination that enhances focus on critical parameters and real-time visualizations, featuring a meticulously designed workspace with a sleek, modern color scheme primarily utilizing deep charcoal and obsidian tones accented with dynamic highlights in teal, magenta, and amber that effectively highlight active controls and processing indicators, complemented by clean, high-contrast typography using a custom-designed sans-serif font for outstanding legibility, with all elements working in concert to deliver a professional voice transformation suite that combines advanced pitch detection, gender modeling, age simulation, and acoustic environment processing capabilities.
 
 ## UI Structure
 The interface is meticulously designed with the following structure:
 - **Top Control Bar**: 
   - Monitoring toggle with low-latency processing indicator and CPU usage meter.
-  - Comprehensive preset management system with over 500 pre-designed voice characters.
+  - Comprehensive preset management system with over 500 pre-designed voice characters categorized into groups including Gender Transformation, Age Variation, Character Voices, Creatures, Robots & AI, Celebrity Impressions, and Custom User Presets, all managed through an intelligent tagging system and searchable browser with preview capability.
 - **Left Side**: 
-  - Voice Engine controls, including the Multi-Band Formant Processor and advanced Pitch Module.
+  - Voice Engine controls, including the innovative Multi-Band Formant Processor offering precise control over five frequency bands with independent formant shifting and resonance adjustment, positioned above the advanced Pitch Module providing both musical (chromatic) and fine-tune adjustment with advanced algorithms for maintaining speech naturalness, complemented by the Gender Spectrum slider using AI-powered modeling to smoothly transition between masculine and feminine voice characteristics.
 - **Center**: 
-  - High-resolution spectral analyzer displaying real-time formant tracking and pitch detection.
-  - Circular voice character positioning grid for visual placement of voice transformations.
-  - Dual control orbs for intuitive macro control of multiple parameters.
+  - High-resolution spectral analyzer displaying real-time formant tracking and pitch detection with overlaid target formant suggestions and pitch guidance, alongside a circular voice character positioning grid allowing users to visually place their desired voice transformation within a two-dimensional space of pitch and formant characteristics.
+  - Dual control orbs - the Character orb highlighted with teal illumination for age and gender essence control (displaying percentage values for masculinity, femininity, and age factors) and the Expression orb with magenta highlighting for emotional and timbral shaping - provide intuitive macro control of multiple parameters.
 - **Right Side**: 
-  - Comprehensive modulation matrix supporting tempo-synced LFOs and MIDI control.
-  - Voice FX rack with professional-grade effects.
+  - Comprehensive modulation matrix supporting tempo-synced LFOs, envelope followers, and MIDI control for dynamic voice transformation, accompanied by the Voice FX rack including professional-grade effects such as Breathiness Control, Throat Length, Vocal Tract Scaling, Whisper Amount, and Vocal Fry.
 - **Bottom Section**: 
-  - Advanced processing pipeline with Input Conditioning, Voice Transformation Chain, and Output Processing.
-  - Dedicated panels for detailed analytics including pitch stability and formant tracking accuracy.
+  - Advanced processing pipeline with Input Conditioning (noise reduction, de-essing, and pitch correction), Voice Transformation Chain, and Output Processing (reverb, delay, and spatialization) with individual bypass switches and processing meters, while dedicated panels show detailed analytics including pitch stability, formant tracking accuracy, and CPU usage per module.
 
 ## Initial Visual Style
 The initial visual style emphasizes a modern and professional appearance, with:
