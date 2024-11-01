@@ -11,3 +11,13 @@
 
 ## Issues to Address
 - [Log any issues identified during the review process here.]
+
+## Extracted Task Details
+- **Milestone:** User Authentication
+- **Epic:** User Login
+- **Feature:** Login Form
+- **User Story:** As a user, I want to log in to my account so that I can access my profile.
+- **Acceptance Criteria:**
+  1. The login form should accept a username and password.
+  2. The login button should be disabled until both fields are filled.
+  3. An error message should be displayed for incorrect credentials.
