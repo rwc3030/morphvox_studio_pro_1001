@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -8,52 +9,44 @@ const LoginForm = () => {
     const [attempts, setAttempts] = useState(0);
     const maxAttempts = 3;
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (attempts >= maxAttempts) {
             setError('Maximum login attempts exceeded. Please try again later.');
             return;
         }
 
-        if (!username || !password) {
-            setError('Username and password cannot be empty.');
-            return;
-        }
-
-        if (!isPasswordStrong(password)) {
-            setError('Password must be at least 8 characters long and include uppercase letters, numbers, and special characters.');
-            return;
-        }
-
         setLoading(true);
-        // Simulate login process
-        setTimeout(() => {
-            // Assume login fails for demonstration
-            setAttempts(attempts + 1);
-            setError('Incorrect username or password.');
-            setLoading(false);
-        }, 2000);
-    };
+        setError('');
 
-    const isPasswordStrong = (password) => {
-        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        return strongPasswordRegex.test(password);
+        try {
+            const response = await axios.post('/api/login', { username, password });
+            // Handle successful login (e.g., redirect or update state)
+        } catch (err) {
+            setAttempts(attempts + 1);
+            setError('Invalid username or password. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div>
+            <h2>Login</h2>
             <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                maxLength={20}
             />
             <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                maxLength={20}
             />
-            <button onClick={handleLogin} disabled={loading || !username || !password}>
+            <button onClick={handleLogin} disabled={!username || !password || loading}>
                 {loading ? 'Loading...' : 'Login'}
             </button>
             {error && <p>{error}</p>}
