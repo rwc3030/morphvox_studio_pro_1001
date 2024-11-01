@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [attempts, setAttempts] = useState(0);
-    const maxAttempts = 3;
+    const [error, setError] = useState('');
+    const [loginAttempts, setLoginAttempts] = useState(0);
+    const maxLoginAttempts = 3;
+
+    const validatePasswordStrength = (password) => {
+        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        return strongPasswordRegex.test(password);
+    };
 
     const handleLogin = async () => {
-        if (attempts >= maxAttempts) {
+        if (loginAttempts >= maxLoginAttempts) {
             setError('Maximum login attempts exceeded. Please try again later.');
+            return;
+        }
+
+        if (!username || !password) {
+            setError('Username and password cannot be empty.');
+            return;
+        }
+
+        if (!validatePasswordStrength(password)) {
+            setError('Password must be at least 8 characters long and include uppercase, lowercase letters, and numbers.');
             return;
         }
 
@@ -19,11 +33,16 @@ const LoginForm = () => {
         setError('');
 
         try {
-            const response = await axios.post('/api/login', { username, password });
-            // Handle successful login (e.g., redirect or update state)
+            // Simulate a login request
+            await new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Simulate a failed login
+                    reject(new Error('Invalid credentials'));
+                }, 2000);
+            });
         } catch (err) {
-            setAttempts(attempts + 1);
-            setError('Invalid username or password. Please try again.');
+            setLoginAttempts(prev => prev + 1);
+            setError('Invalid credentials. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -31,23 +50,20 @@ const LoginForm = () => {
 
     return (
         <div>
-            <h2>Login</h2>
             <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                maxLength={20}
             />
             <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                maxLength={20}
             />
-            <button onClick={handleLogin} disabled={!username || !password || loading}>
-                {loading ? 'Loading...' : 'Login'}
+            <button onClick={handleLogin} disabled={loading || !username || !password}>
+                {loading ? 'Logging in...' : 'Login'}
             </button>
             {error && <p>{error}</p>}
         </div>

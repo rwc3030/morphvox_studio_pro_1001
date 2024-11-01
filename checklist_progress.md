@@ -26,3 +26,5 @@
         - Implemented password strength validation.
         - Provided feedback for users when they exceed the maximum number of login attempts.
         - Implemented loading state when the login button is clicked.
+        - Added user feedback for empty fields and password strength.
+        - Handled network errors during login attempts.
