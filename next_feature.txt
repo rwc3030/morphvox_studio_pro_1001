@@ -1,0 +1,13 @@
+# Review of Generated Code
+
+## Logical Flow
+- [Insert observations about the logical flow of the generated code here.]
+
+## Edge Cases
+- [Insert observations about any edge cases identified in the generated code here.]
+
+## Functional Consistency
+- [Insert observations about the functional consistency of the generated code here.]
+
+## Issues to Address
+- [Log any issues identified during the review process here.]
