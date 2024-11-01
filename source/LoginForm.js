@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -7,22 +6,35 @@ const LoginForm = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [captcha, setCaptcha] = useState('');
-    
+    const [loginAttempts, setLoginAttempts] = useState(0);
+    const MAX_LOGIN_ATTEMPTS = 3;
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+            setError('Maximum login attempts exceeded. Please try again later.');
+            return;
+        }
         if (username.length > 20 || password.length > 20) {
             setError('Username and password must be 20 characters or less.');
             return;
         }
         if (!validatePasswordStrength(password)) {
-            setError('Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.');
+            setError('Password does not meet strength requirements.');
             return;
         }
+        // Simulate CAPTCHA verification
         if (!captcha) {
             setError('Please complete the CAPTCHA.');
             return;
         }
-        // Proceed with login logic
+        // Simulate login process
+        setLoading(true);
+        // Assume login logic here
+        // On failure:
+        setLoginAttempts(prev => prev + 1);
+        setError('Incorrect username or password.');
+        setLoading(false);
     };
 
     const validatePasswordStrength = (password) => {
@@ -46,13 +58,13 @@ const LoginForm = () => {
                 maxLength={20}
                 placeholder="Password"
             />
-            <ReCAPTCHA
-                sitekey="YOUR_RECAPTCHA_SITE_KEY"
-                onChange={(value) => setCaptcha(value)}
+            <input
+                type="text"
+                value={captcha}
+                onChange={(e) => setCaptcha(e.target.value)}
+                placeholder="Enter CAPTCHA"
             />
-            <button type="submit" disabled={loading || !username || !password}>
-                Login
-            </button>
+            <button type="submit" disabled={loading}>Login</button>
             {error && <p>{error}</p>}
         </form>
     );

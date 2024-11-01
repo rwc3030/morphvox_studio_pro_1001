@@ -24,3 +24,4 @@
         - Set maximum length for username and password fields.
         - Added CAPTCHA mechanism.
         - Implemented password strength validation.
+        - Provided feedback for users when they exceed the maximum number of login attempts.
