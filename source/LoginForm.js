@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -6,7 +7,7 @@ const LoginForm = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [captcha, setCaptcha] = useState('');
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         if (username.length > 20 || password.length > 20) {
@@ -14,15 +15,14 @@ const LoginForm = () => {
             return;
         }
         if (!validatePasswordStrength(password)) {
-            setError('Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.');
+            setError('Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.');
             return;
         }
         if (!captcha) {
             setError('Please complete the CAPTCHA.');
             return;
         }
-        setLoading(true);
-        // Perform login logic here
+        // Proceed with login logic
     };
 
     const validatePasswordStrength = (password) => {
@@ -36,27 +36,22 @@ const LoginForm = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                maxLength={20}
                 placeholder="Username"
-                maxLength="20"
             />
             <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                maxLength={20}
                 placeholder="Password"
-                maxLength="20"
             />
-            <div>
-                {/* Implement CAPTCHA here */}
-                <input
-                    type="text"
-                    value={captcha}
-                    onChange={(e) => setCaptcha(e.target.value)}
-                    placeholder="Enter CAPTCHA"
-                />
-            </div>
+            <ReCAPTCHA
+                sitekey="YOUR_RECAPTCHA_SITE_KEY"
+                onChange={(value) => setCaptcha(value)}
+            />
             <button type="submit" disabled={loading || !username || !password}>
-                {loading ? 'Logging in...' : 'Login'}
+                Login
             </button>
             {error && <p>{error}</p>}
         </form>
