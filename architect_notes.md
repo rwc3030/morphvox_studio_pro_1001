@@ -23,3 +23,6 @@
 - **Fix:** Added a loading spinner to the login button during the authentication process.
 - **Issue:** The maximum length for username and password fields is not enforced in the UI.
 - **Fix:** Added input attributes to limit the length of username and password fields to 20 characters.
+
+## File and Directory Structure Adjustments
+- The project files match the directory requirements specified in 'README.md'. No structural issues were found.
