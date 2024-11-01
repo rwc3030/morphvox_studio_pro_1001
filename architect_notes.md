@@ -24,5 +24,10 @@
 - **Issue:** The maximum length for username and password fields is not enforced in the UI.
 - **Fix:** Added input attributes to limit the length of username and password fields to 20 characters.
 
+## Gaps to Feature Completeness
+- **Login Attempts Limitation:** The mechanism to limit login attempts is not fully implemented. A counter and lockout period need to be established.
+- **Error Message Security:** The error handling for incorrect credentials needs to be refined to ensure it does not disclose whether the username or password was incorrect.
+- **Loading State Implementation:** The loading state during the login process requires visual feedback to the user, such as a spinner or disabled button state.
+
 ## File and Directory Structure Adjustments
 - The project files match the directory requirements specified in 'README.md'. No structural issues were found.
