@@ -5,49 +5,53 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [attempts, setAttempts] = useState(0);
-    const MAX_ATTEMPTS = 3;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!username || !password) {
-            setError('Please fill in both fields.');
-            return;
-        }
-        if (attempts >= MAX_ATTEMPTS) {
-            setError('Too many login attempts. Please try again later.');
-            return;
-        }
         setLoading(true);
-        // Simulate login process
-        setTimeout(() => {
-            // Simulate incorrect credentials
-            const isValid = false; // Replace with actual validation logic
-            if (!isValid) {
-                setAttempts(attempts + 1);
-                setError('Invalid credentials. Please try again.');
-            } else {
-                // Handle successful login
-            }
-            setLoading(false);
-        }, 1000);
+        setError('');
+
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+        setLoading(false);
+
+        if (response.ok) {
+            // Handle successful login (e.g., redirect or update UI)
+        } else {
+            setError(data.message || 'Login failed. Please try again.');
+        }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-            />
-            <button type="submit" disabled={loading || !username || !password}>
+            <div>
+                <label>
+                    Username:
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>
+            </div>
+            <button type="submit" disabled={!username || !password || loading}>
                 {loading ? 'Logging in...' : 'Login'}
             </button>
             {error && <p>{error}</p>}
